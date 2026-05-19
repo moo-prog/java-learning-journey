@@ -39,7 +39,6 @@ public class StudentsManagement {
 
         System.out.println("----------------------------------------");
 
-        // عمليات الطالب الثاني
         printStudent(secondName, secondAge, secondMid, secondFinalGrade, secondAttendance);
         double total2 = calculateTotal(secondMid, secondFinalGrade, secondAttendance);
         System.out.println("Total: " + total2 + " | Passed: " + checkPassed(secondMid, secondFinalGrade, secondAttendance));

@@ -2,22 +2,15 @@ package StudentsOOP;
 
 public class Main {
     public static void main(String[] args) {
-        Student student1 = new Student();
-        student1.name = "olaa";
-        student1.age = 20;
-        student1.midGrade = 25.0;
-        student1.finalGrade = 40.0;
-        student1.attendance = 8.5;
-
-        Student student2 = new Student();
-        student2.name = "anna";
-        student2.age = 30;
-        student2.midGrade = 65.0;
-        student2.finalGrade = 40.0;
-        student2.attendance = 6.5;
-
-        student2.printInfo();
+        Student student1 = new Student("Ahmed", 20, 25.0, 40.0, 8.5);
+        Student student2 = new Student("Mohamed", 22, 15.0, 30.0, 7.0);
+        Student student3 = new Student("Sara", 21, 28.0, 52.0, 9.5);
         student1.printInfo();
+        student2.printInfo();
+        student3.printInfo();
+        student1.setAge(150);
+        student1.setMidGrade(35);
+
 
     }
 }

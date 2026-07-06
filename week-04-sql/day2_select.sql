@@ -20,3 +20,26 @@ CREATE TABLE members(
     
 );
 
+INSERT INTO members (name, email) VALUES 
+('Ahmed Ali', 'ahmed@email.com'),
+('Sarah Omar', 'sarah@email.com'),
+('John Doe', 'john@email.com');
+
+CREATE TABLE borrowings (
+	book_id INT,
+    member_id INT,
+    borrow_date DATE,
+    FOREIGN KEY (book_id) REFERENCES books(id),
+    FOREIGN KEY (member_id) REFERENCES members(id)
+);
+INSERT INTO borrowings (book_id, member_id, borrow_date) VALUES 
+(3, 1, '2026-07-06');
+
+UPDATE  members 
+SET name = 'raon muller'
+WHERE id = 1;
+
+DELETE FROM books where id = 1;
+SELECT * FROM books;
+SELECT * FROM members;
+SELECT * FROM borrowings;

@@ -1,3 +1,5 @@
+package Libraryproject;
+
 import java.io.FileInputStream; // To open files on the hard drive
 import java.io.IOException;     // Error type for file issues
 import java.sql.Connection;     // Communication line with the database
@@ -9,7 +11,7 @@ public class DatabaseConnection {
     public static Connection getConnection() throws SQLException {
         /* [throws] -> The method is warning us: "Hey, I'm trying to connect to a database.
          If the server is down or password is wrong, I'm going to throw an error, so be ready to handle it!"
-         You have to write try and catch in the other class (like BookRepository) whenever you call this method! */
+         You have to write try and catch in the other class (like Libraryproject.BookRepository) whenever you call this method! */
         Properties props = new Properties();
         String file = "config.properties";
         try (FileInputStream fis = new FileInputStream(file)) {

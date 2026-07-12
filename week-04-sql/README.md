@@ -1,20 +1,29 @@
-# week-04-sql
-# Moving to Databases! 🗄️☕
+# Week 04 - Moving to MySQL Database 
 
-Welcome to my space! This week (Week 04) was a huge milestone in my backend journey. I finally moved away from losing my data every time I close the app, and started storing everything permanently in a real database! 
+# library-app-v2 (Now with MySQL)
 
-Here is exactly what I did day by day this week:
+Finally got tired of losing all my books every time I restarted the app, so I ditched the old temporary `ArrayLists` this week and connected the whole backend to a permanent MySQL database.
 
-* **Day 1**: Set up my first database (`library_db`), learned how to write clean queries, and practiced filtering/sorting books.
-* **Day 2**: Divided my data into tables (`books`, `members`, `borrowings`) and linked them together using Foreign Keys and `ON DELETE CASCADE` so no data gets lost or messed up.
-* **Day 3**: Mastered `JOINs`! Learned how to pull data from multiple tables at once to show actual names instead of just IDs.
-* **Day 4**: Built the bridge! Used JDBC to finally connect my Java code to MySQL, making Java send SQL queries automatically.
-* **Days 5 & 6**: The Big Upgrade! I took my old Java Library project, threw away the temporary `ArrayLists`, and connected it completely to MySQL using the Repository Pattern. Now, if I add a book and restart the app, the book is still there!
-* **Day 7**: Rest day. Officially wrapped up Month 1 of this journey.
+Spent the last few days rewriting the backend using the Repository pattern and JDBC. Also learned how to write basic SQL queries, link tables (`books`, `members`, `borrowings`) using Foreign Keys, and use `JOINs` so I can actually display real names instead of random IDs. Pretty happy that everything saves permanently now!
 
-## 🛠️ Tools I Used:
-* **Java** ☕
-* **MySQL Server & MySQL Workbench** 🐬
-* **JDBC Driver** (MySQL Connector/J)
+### Database Setup
 
-Month 1 is officially done. Bring on Spring Boot! 🚀🔥
+If you want to run this locally, open your MySQL terminal or Workbench and run this first:
+
+    CREATE DATABASE library_db;
+    USE library_db;
+
+    CREATE TABLE books (
+        id INT PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+        author VARCHAR(255) NOT NULL,
+        is_available BOOLEAN DEFAULT TRUE
+    );
+
+After that, just go to `DatabaseConnection.java` and change the login details to match your local setup:
+- URL: `jdbc:mysql://localhost:3306/library_db`
+- Username: `root`
+- Password: `YOUR_PASSWORD`
+
+Tech used: Java, MySQL, JDBC.
+Month 1 done! Next stop: Spring Boot.

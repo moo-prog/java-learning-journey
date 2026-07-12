@@ -1,10 +1,10 @@
 package Libraryproject;
-
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         Library l = new Library();
+        Libraryproject.BookRepository bookRepo = new BookRepository();
         Scanner eingabe = new Scanner(System.in);
         while (true) {
             System.out.println("\nSelect an option:");
@@ -31,7 +31,8 @@ public class Main {
                     System.out.println("how many Page");
                     int pages = eingabe.nextInt();
                     PrintedBook newBook = new PrintedBook(bNum, title, author, true, pages);
-                    l.addBooks(newBook);
+//                    l.addBooks(newBook);
+                    bookRepo.addBook(newBook);//connect with database
                     break;
                 case 2:
                     System.out.print("Enter Member ID (Number): ");
@@ -47,22 +48,28 @@ public class Main {
                     int borrowMemberID = eingabe.nextInt();
                     System.out.print("Enter Book Number: ");
                     int borrowBookID = eingabe.nextInt();
-                    l.borrowBookProcess(borrowMemberID, borrowBookID);
+//                    l.borrowBookProcess(borrowMemberID, borrowBookID);
+                    bookRepo.updateBookStatus(borrowBookID, false);
                     break;
                 case 4:
                     System.out.print("Enter Member ID: ");
                     int returnMemberID = eingabe.nextInt();
                     System.out.print("Enter Book Number: ");
                     int returnBookID = eingabe.nextInt();
-                    l.returnBookProcess(returnMemberID, returnBookID);
+//                    l.returnBookProcess(returnMemberID, returnBookID);
+                    bookRepo.updateBookStatus(returnBookID, true);
                     break;
                 case 5:
                     System.out.print("Enter Book Title to search: ");
                     String searchTitle = eingabe.nextLine();
-                    l.searchTitle(searchTitle);
+//                    l.searchTitle(searchTitle);
+                    bookRepo.selectBook(searchTitle);
+
                     break;
                 case 6:
-                    l.DisplayAllBooks();
+//                    l.DisplayAllBooks();
+                    bookRepo.getAllBooks();
+
                     break;
                 case 7:
                     System.out.println("Thank you for using the Library System. Goodbye!");

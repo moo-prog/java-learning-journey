@@ -1,11 +1,9 @@
-import Libraryproject.Book;
+package Libraryproject;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;     // Container for data returned from database
 import java.sql.SQLException;
 import java.sql.Statement;     // Carries and runs the SQL query
-
 public class BookRepository {
      public void getAllBooks(){
          System.out.println("Connecting to database to fetch books\n");
@@ -50,4 +48,43 @@ public class BookRepository {
          }
 
      }
+
+
+     public void updateBookStatus(int bookId, boolean newStatus){
+         System.out.println("Connecting to database to update book status...\n");
+
+         String query  = "UPDATE books SET is_available =" + newStatus + " WHERE id = "+ bookId;
+
+         try(Connection con = DatabaseConnection.getConnection();
+             Statement stat = con.createStatement())
+         {
+             stat.executeUpdate(query);
+             System.out.println("Book ID " + bookId + " status has been updated successfully!");
+         }catch (SQLException e){
+             System.out.println(" Database error happened inside is_Available()");
+             e.printStackTrace();
+         }
+     }
+    public void selectBook(String bookTitle) {
+        System.out.println("Connecting to database to select a new book...\n");
+          // Using LIKE with % checks if the title contains this word, not an exact match.
+        String query = "SELECT id, title, author, is_available FROM books WHERE title LIKE '%" + bookTitle + "%'";
+
+        try (Connection con = DatabaseConnection.getConnection();
+             Statement stat = con.createStatement();
+             ResultSet resu = stat.executeQuery(query))
+        {
+            while (resu.next()) {
+                int id = resu.getInt("id");
+                String title = resu.getString("title");
+                String author = resu.getString("author");
+                boolean isAvailable = resu.getBoolean("is_available");
+                System.out.println("ID: " + id + " | Title: " + title + " | Author: " + author + " | Available: " + isAvailable);
+            }
+      }
+        catch (SQLException e) {
+            System.out.println(" Database error happened inside selectBook()");
+            e.printStackTrace();
+        }
+    }
 }

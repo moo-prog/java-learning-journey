@@ -5,26 +5,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class HelloController {
 
     @GetMapping("/hello")
-    public String getHello(){
+    public String getHello() {
         return "Hello, Welcome to Spring Boot!";
     }
+
     // for testing, spring boot acceptn't two endpoints
     //    @GetMapping("/hello")
     //    public String duplicateHello() {
     //        return "This is a duplicate endpoint!";
     //    }
     @GetMapping("/about")
-    public String getAbout(){
+    public String getAbout() {
         return "I am a Backend Developer building Spring Boot APIs!";
     }
+
     @GetMapping("/time")
-    public String getTime(){
+    public String getTime() {
         return "current time is: " + LocalDateTime.now();
+    }
+
+    @GetMapping("/book")
+    public List<Book> getBook() {
+        return List.of(
+                new Book(
+                        1,
+                        "java"
+                        , "ali"
+
+                ),
+                new Book(
+                        2,
+                        "Python"
+                        , "moo"
+
+                )
+        );
     }
 }

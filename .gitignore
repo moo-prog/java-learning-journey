@@ -33,3 +33,6 @@ out/
 # Compiled output
 target/
 build/
+
+# VS Code
+.vscode/

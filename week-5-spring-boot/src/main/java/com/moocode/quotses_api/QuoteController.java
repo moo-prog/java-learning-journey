@@ -8,9 +8,11 @@ import java.util.List;
 @RestController
 public class QuoteController {
     private final QuoteService quoteService;
+    private final GreatingService  greatingService;
 
-    public QuoteController(QuoteService quoteService) {
+    public QuoteController(QuoteService quoteService, GreatingService greatingService) {
         this.quoteService = quoteService;
+        this.greatingService = greatingService;
     }
 
     @GetMapping("/api/quotes")
@@ -25,4 +27,7 @@ public class QuoteController {
     public List<Quote> searchQuotesByAuthor(@RequestParam String author){
         return quoteService.getQuotesByAuthor(author);
     }
-}
+    @GetMapping("/api/quotes/greating")
+    public String greatingService(){
+        return greatingService.getGreetingMessage();
+    }}
